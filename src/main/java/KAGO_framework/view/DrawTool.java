@@ -1,6 +1,5 @@
 package KAGO_framework.view;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.*;
 import java.awt.image.BufferedImage;
@@ -14,7 +13,6 @@ public class DrawTool {
 
     // Referenzen
     private Graphics2D graphics2D; //java-spezifisches Objekt zum Arbeiten mit 2D-Grafik
-    private JComponent parent;
 
     /**
      * Zeichnet ein Objekt der Klasse BufferedImage
@@ -354,17 +352,12 @@ public class DrawTool {
      * Bitte nicht verwenden.
      * @param g2d Das java-interne Grafikobjekt des Programmfensters
      */
-    public void setGraphics2D(Graphics2D g2d, JComponent parent){
+    public void setGraphics2D(Graphics2D g2d){
         graphics2D = g2d;
-        this.parent = parent;
     }
 
     public Graphics2D getGraphics2D(){
         return graphics2D;
-    }
-
-    public JComponent getParent(){
-        return parent;
     }
 
 }

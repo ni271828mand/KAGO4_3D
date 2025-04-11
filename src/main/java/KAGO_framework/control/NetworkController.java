@@ -1,8 +1,7 @@
 package KAGO_framework.control;
 
-import KAGO_framework.Config;
 import KAGO_framework.model.abitur.netz.Client;
-import my_project.control.ProgramController;
+import my_project.Config;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -21,10 +20,10 @@ public abstract class NetworkController{
      * des NetworkControllers zu schreiben.
      * Für eine ausführliche Dokumentation, bitte die Klasse Client betrachten
      */
-    private class NetworkClient extends Client {
+    private static class NetworkClient extends Client {
 
         // Referenzen
-        private NetworkController networkController;
+        private final NetworkController networkController;
 
         public NetworkClient(String pServerIP, int pServerPort, NetworkController networkController) {
             super(pServerIP, pServerPort);
@@ -46,7 +45,6 @@ public abstract class NetworkController{
 
     //Referenzen
     protected NetworkClient networkClient;
-    protected ProgramController programController;
 
     //Attribute
     protected String serverIP;
@@ -57,14 +55,12 @@ public abstract class NetworkController{
 
     /**
      * Erzeugt ein neues Objekt der Klasse NetworkController
-     * @param programController der zum Framework gehörende ProgramController
      */
-    public NetworkController(ProgramController programController){
+    public NetworkController(){
         port = -1;
         serverIP = null;
         isWorking = false;
         maximumCycles = 20; // Anzahl der Suchdurchläufe
-        this.programController = programController;
     }
 
     /**
@@ -159,7 +155,7 @@ public abstract class NetworkController{
     public void startConnection(){
         if(serverIP != null && !serverIP.equals("timeout")){
             System.out.println("[#]<~~?~~>[#] NetworkController: Trying to connect to: "+serverIP+" on "+port);
-            networkClient = new NetworkClient(serverIP,port,this);
+            networkClient = new NetworkClient(serverIP, port, this);
         }
     }
 

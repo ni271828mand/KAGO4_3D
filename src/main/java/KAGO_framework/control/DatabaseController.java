@@ -1,10 +1,8 @@
 package KAGO_framework.control;
 
-import KAGO_framework.Config;
 import KAGO_framework.model.abitur.datenbanken.mysql.QueryResult;
 import KAGO_framework.model.abitur.datenstrukturen.Queue;
 
-import javax.xml.crypto.Data;
 import java.sql.*;
 
 /**
@@ -13,7 +11,8 @@ import java.sql.*;
  */
 public class DatabaseController {
 
-    private String connectionUrl,user,port,pass,database, message;
+    private final String connectionUrl, user, port, pass, database;
+    private String message;
     protected Connection connection;
     private QueryResult currentQueryResult;
 
