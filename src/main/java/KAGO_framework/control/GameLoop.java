@@ -27,6 +27,9 @@ public final class GameLoop implements Runnable {
         }
     }
 
+    int frames = 0;
+    double timer = 0;
+
     @Override
     public void run() {
         lastLoop = System.nanoTime();
@@ -35,7 +38,7 @@ public final class GameLoop implements Runnable {
             Scene currentScene = Framework.sceneController.getCurrentScene();
 
             if(currentScene != null) {
-                int dt = (int) ((System.nanoTime() - lastLoop) / 1000000000L);
+                double dt = (System.nanoTime() - lastLoop) / 1_000_000_000.0;
                 lastLoop = System.nanoTime();
 
                 for (GameObject d : currentScene.getObjects()) {
@@ -43,6 +46,15 @@ public final class GameLoop implements Runnable {
                 }
 
                 Framework.renderManager.renderScene();
+
+                frames++;
+                timer += dt;
+
+                if(timer >= 1.0){
+                    System.out.println(frames);
+                    frames = 0;
+                    timer = 0;
+                }
             }
         }
     }

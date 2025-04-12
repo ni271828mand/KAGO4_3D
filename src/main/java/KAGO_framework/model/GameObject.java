@@ -4,6 +4,8 @@ public abstract class GameObject {
 
     protected double x = 0, y = 0, z = 0;
 
+    GameObject(){}
+
     public abstract void update(double dt);
 
     public double getX() {

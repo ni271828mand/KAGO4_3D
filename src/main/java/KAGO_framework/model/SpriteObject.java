@@ -2,11 +2,11 @@ package KAGO_framework.model;
 
 import java.awt.image.BufferedImage;
 
-public abstract class SpriteBasedObject extends GameObject{
+public abstract class SpriteObject extends GameObject{
 
     private BufferedImage sprite;
 
-    public SpriteBasedObject(BufferedImage sprite){
+    public SpriteObject(BufferedImage sprite){
         this.sprite = sprite;
     }
 

@@ -3,35 +3,28 @@ package KAGO_framework.model;
 
 import KAGO_framework.control.GeneralMouseListener;
 
-import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Scene {
+public abstract class Scene {
 
-    private final Map<String, GameObject> objects;
-    private final ArrayList<KeyListener> keyListeners;
-    private final ArrayList<GeneralMouseListener> mouseListeners;
+    protected final Map<String, GameObject> objects;
+    protected final ArrayList<KeyListener> keyListeners;
+    protected final ArrayList<GeneralMouseListener> mouseListeners;
+    protected final Camera camera;
 
-    public Scene(){
+    public Scene(Camera camera){
         objects = new HashMap<>();
         keyListeners = new ArrayList<>();
         mouseListeners = new ArrayList<>();
+        this.camera = camera;
     }
 
-    public void add(String name, GameObject object){
-        if(!objects.containsKey(name)){
-            objects.put(name, object);
-
-            if(object instanceof KeyListener) keyListeners.add((KeyListener) object);
-            if(object instanceof MouseListener) mouseListeners.add((GeneralMouseListener) object);
-        }
-    }
+    public abstract void add(GameObject object, String name);
 
     public void remove(String name){
         GameObject object = objects.remove(name);
@@ -50,5 +43,9 @@ public class Scene {
 
     public Collection<GeneralMouseListener> getMouseListener(){
         return mouseListeners;
+    }
+
+    public Camera getCamera(){
+        return camera;
     }
 }
