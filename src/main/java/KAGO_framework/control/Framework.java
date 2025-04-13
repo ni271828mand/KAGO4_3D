@@ -1,5 +1,7 @@
 package KAGO_framework.control;
 
+import my_project.Config;
+
 public final class Framework{
 
     public static final SceneController sceneController = new SceneController();
@@ -11,6 +13,8 @@ public final class Framework{
 
     public static void start(){
         if(!running){
+            if(Config.DEBUG) System.out.println("[DEBUG] Framework startet");
+
             running = true;
 
             renderManager.createWindow();
@@ -26,6 +30,8 @@ public final class Framework{
             gameLoop.stop();
             gameLoop = null;
             renderManager.deleteWindow();
+
+            if(Config.DEBUG) System.out.println("[DEBUG] Framework gestoppt");
         }
     }
 }

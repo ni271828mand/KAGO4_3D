@@ -19,6 +19,6 @@ public class Example extends SpriteObject {
 
     @Override
     public void update(double dt) {
-
+        x+=5*dt;
     }
 }

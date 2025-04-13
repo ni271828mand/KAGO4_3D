@@ -7,6 +7,7 @@ import KAGO_framework.view.GameWindow;
 import KAGO_framework.view.Renderer;
 import KAGO_framework.view.Renderer2D;
 import KAGO_framework.view.Renderer3D;
+import my_project.Config;
 
 import java.util.HashMap;
 
@@ -34,15 +35,18 @@ public final class RenderManager {
 
     void createWindow(){
         window = new GameWindow();
+        if(Config.DEBUG) System.out.println("[DEBUG] Fenster erstellt");
     }
 
     void deleteWindow(){
         window = null;
+        if(Config.DEBUG) System.out.println("[DEBUG] Fenster gelöscht");
     }
 
     public static void addRenderer(Class<? extends Scene> sceneClass, Renderer renderer){
         if(renderers.containsKey(sceneClass)) throw new RuntimeException("Renderer for scene "+sceneClass+" is already defined");
 
         renderers.put(sceneClass, renderer);
+        if(Config.DEBUG) System.out.println("[DEBUG] Renderer "+renderer.getClass()+" hinzugefügt");
     }
 }

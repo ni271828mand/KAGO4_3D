@@ -2,6 +2,7 @@ package KAGO_framework.model;
 
 
 import KAGO_framework.control.GeneralMouseListener;
+import my_project.Config;
 
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
@@ -27,10 +28,14 @@ public abstract class Scene {
     public abstract void add(GameObject object, String name);
 
     public void remove(String name){
-        GameObject object = objects.remove(name);
+        if(objects.containsKey(name)) {
+            GameObject object = objects.remove(name);
 
-        if(object instanceof KeyListener) keyListeners.remove((KeyListener) object);
-        if(object instanceof GeneralMouseListener) mouseListeners.remove((GeneralMouseListener) object);
+            if (object instanceof KeyListener) keyListeners.remove((KeyListener) object);
+            if (object instanceof GeneralMouseListener) mouseListeners.remove((GeneralMouseListener) object);
+
+            if(Config.DEBUG) System.out.println("[DEBUG] "+name+" gelöscht");
+        }
     }
 
     public Collection<GameObject> getObjects(){

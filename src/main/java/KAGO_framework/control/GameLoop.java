@@ -9,7 +9,6 @@ public final class GameLoop implements Runnable {
     private static boolean running = false;
 
     private Thread thread;
-    private long lastLoop;
 
     GameLoop(){}
 
@@ -33,7 +32,7 @@ public final class GameLoop implements Runnable {
 
     @Override
     public void run() {
-        lastLoop = System.nanoTime();
+        long lastLoop = System.nanoTime();
 
         while(running) {
             Scene currentScene = Framework.sceneController.getCurrentScene();
@@ -53,12 +52,12 @@ public final class GameLoop implements Runnable {
                     timer += dt;
 
                     if (timer >= 1.0) {
-                        System.out.println("FPS: "+frames);
+                        System.out.println("[DEBUG] "+frames+" FPS");
                         frames = 0;
                         timer = 0;
                     }
                 }
-            }
+            }else System.err.println("Szene ist null");
         }
     }
 }
