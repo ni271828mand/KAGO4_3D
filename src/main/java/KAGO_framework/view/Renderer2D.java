@@ -8,6 +8,7 @@ import KAGO_framework.model.GraphicalObject;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import java.util.Comparator;
 
 public final class Renderer2D implements Renderer{
@@ -35,7 +36,8 @@ public final class Renderer2D implements Renderer{
             if(((GameObject) object).getZ() >= 0){
                 if (object instanceof SpriteObject) {
                     SpriteObject spriteObject = ((SpriteObject) object);
-                    graphics.drawImage(spriteObject.getSprite(), (int) spriteObject.getX(), (int) spriteObject.getY(), null);
+                    BufferedImage sprite = spriteObject.getSprite();
+                    graphics.drawImage(sprite, (int) (spriteObject.getX() - sprite.getWidth() / 2.0), (int) (spriteObject.getY() - sprite.getHeight() / 2.0), null);
                 } else {
                     assert object instanceof GraphicalObject;
 
