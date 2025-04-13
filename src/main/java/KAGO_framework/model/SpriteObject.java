@@ -7,6 +7,9 @@ public abstract class SpriteObject extends GameObject{
     private BufferedImage sprite;
 
     public SpriteObject(BufferedImage sprite){
+        if(sprite == null)
+            throw new RuntimeException("Sprite should not be null");
+
         this.sprite = sprite;
     }
 

@@ -8,7 +8,7 @@ public final class Config {
     public final static int WINDOW_WIDTH = 800;
     public final static int WINDOW_HEIGHT = 600;
 
-    public final static boolean DEBUG = false;
+    public final static boolean DEBUG = true;
 
     private Config(){}
 }

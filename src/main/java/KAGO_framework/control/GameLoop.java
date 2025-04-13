@@ -2,6 +2,7 @@ package KAGO_framework.control;
 
 import KAGO_framework.model.GameObject;
 import KAGO_framework.model.Scene;
+import my_project.Config;
 
 public final class GameLoop implements Runnable {
 
@@ -47,13 +48,15 @@ public final class GameLoop implements Runnable {
 
                 Framework.renderManager.renderScene();
 
-                frames++;
-                timer += dt;
+                if(Config.DEBUG) {
+                    frames++;
+                    timer += dt;
 
-                if(timer >= 1.0){
-                    System.out.println(frames);
-                    frames = 0;
-                    timer = 0;
+                    if (timer >= 1.0) {
+                        System.out.println("FPS: "+frames);
+                        frames = 0;
+                        timer = 0;
+                    }
                 }
             }
         }
