@@ -1,6 +1,6 @@
 package KAGO_framework.view;
 
-import KAGO_framework.control.Framework;
+import KAGO_framework.control.Listener;
 import my_project.Config;
 
 import javax.swing.*;
@@ -39,10 +39,12 @@ public final class GameWindow extends JFrame {
         canvas.setFocusable(true);
         canvas.requestFocus();
 
-        canvas.addKeyListener(Framework.listener);
-        canvas.addMouseListener(Framework.listener);
-        canvas.addMouseMotionListener(Framework.listener);
-        canvas.addMouseWheelListener(Framework.listener);
+        Listener listener = new Listener();
+
+        canvas.addKeyListener(listener);
+        canvas.addMouseListener(listener);
+        canvas.addMouseMotionListener(listener);
+        canvas.addMouseWheelListener(listener);
     }
 
     public Canvas getCanvas(){

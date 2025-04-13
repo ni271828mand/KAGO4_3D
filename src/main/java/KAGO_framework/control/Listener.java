@@ -4,9 +4,9 @@ import KAGO_framework.model.Scene;
 
 import java.awt.event.*;
 
-final class Listener implements KeyListener , MouseListener, MouseMotionListener, MouseWheelListener {
+public final class Listener implements KeyListener , MouseListener, MouseMotionListener, MouseWheelListener {
 
-    Listener(){}
+    public Listener(){}
 
     @Override
     public void keyTyped(KeyEvent e) {

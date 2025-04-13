@@ -2,7 +2,6 @@ package KAGO_framework.control;
 
 public final class Framework{
 
-    public static final Listener listener = new Listener();
     public static final SceneController sceneController = new SceneController();
     public static final RenderManager renderManager = new RenderManager();
     private static GameLoop gameLoop;
