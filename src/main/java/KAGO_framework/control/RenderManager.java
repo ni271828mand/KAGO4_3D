@@ -1,20 +1,35 @@
 package KAGO_framework.control;
 
+import KAGO_framework.model.Scene;
+import KAGO_framework.model.Scene2D;
+import KAGO_framework.model.Scene3D;
 import KAGO_framework.view.GameWindow;
 import KAGO_framework.view.Renderer;
 import KAGO_framework.view.Renderer2D;
+import KAGO_framework.view.Renderer3D;
+
+import java.util.HashMap;
 
 public final class RenderManager {
 
-    private GameWindow window;
-    private Renderer renderer;
+    private static final HashMap<Class<? extends Scene>, Renderer> renderers;
 
-    RenderManager(){
-        renderer = new Renderer2D();
+    static {
+        renderers = new HashMap<>();
+        renderers.put(Scene2D.class, new Renderer2D());
+        renderers.put(Scene3D.class, new Renderer3D());
     }
 
+    private GameWindow window;
+
+    RenderManager(){}
+
     void renderScene(){
-        renderer.renderScene(window);
+        Class<? extends Scene> sceneClass = Framework.sceneController.getCurrentScene().getClass();
+
+        if(!renderers.containsKey(sceneClass)) throw new RuntimeException("No renderer available to render "+sceneClass);
+
+        renderers.get(sceneClass).renderScene(window);
     }
 
     void createWindow(){
@@ -23,5 +38,11 @@ public final class RenderManager {
 
     void deleteWindow(){
         window = null;
+    }
+
+    public static void addRenderer(Class<? extends Scene> sceneClass, Renderer renderer){
+        if(renderers.containsKey(sceneClass)) throw new RuntimeException("Renderer for scene "+sceneClass+" is already defined");
+
+        renderers.put(sceneClass, renderer);
     }
 }
