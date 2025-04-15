@@ -6,7 +6,7 @@ public final class Config {
 
     public final static boolean FULL_SCREEN = false;
     public final static int WINDOW_WIDTH = 800;
-    public final static int WINDOW_HEIGHT = 600;
+    public final static int WINDOW_HEIGHT = 800;
 
     public final static boolean DEBUG = true;
 

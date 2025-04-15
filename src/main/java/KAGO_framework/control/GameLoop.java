@@ -57,7 +57,7 @@ public final class GameLoop implements Runnable {
                         timer = 0;
                     }
                 }
-            }else System.err.println("Szene ist null");
+            }
         }
     }
 }
