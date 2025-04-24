@@ -2,13 +2,13 @@ package KAGO_framework.model;
 
 public abstract class ThreeDimensionalObject extends GameObject{
 
-    private final Triangle[] triangles;
+    private final Mesh mesh;
 
-    public ThreeDimensionalObject(Triangle[] triangles){
-        this.triangles = triangles;
+    public ThreeDimensionalObject(Mesh mesh){
+        this.mesh = mesh;
     }
 
-    public Triangle[] getTriangles(){
-        return triangles;
+    public Mesh getMesh(){
+        return mesh;
     }
 }

@@ -1,28 +1,34 @@
 package KAGO_framework.model;
 
-import javafx.geometry.Point3D;
-
 import java.awt.*;
 
 public final class Triangle {
 
-    private final Color color;
-    private final Point3D[] points;
+    private Color color;
+    private final Vector3D[] points;
 
-    public Triangle(Point3D p1, Point3D p2, Point3D p3){
+    public Triangle(Vector3D p1, Vector3D p2, Vector3D p3){
         this.color = null;
-        this.points = new Point3D[]{p1, p2, p3};
+        this.points = new Vector3D[]{p1, p2, p3};
     }
 
     public Color getColor(){
         return color;
     }
 
-    public Point3D[] getPoints(){
+    public void setColor(Color newColor){
+        color = newColor;
+    }
+
+    public Vector3D[] getPoints(){
         return points;
     }
 
-    public Point3D getPoint(int i){
+    public Vector3D getPoint(int i){
         return points[i];
+    }
+
+    public void setPoint(int i, Vector3D newPoint){
+        points[i] = newPoint;
     }
 }
