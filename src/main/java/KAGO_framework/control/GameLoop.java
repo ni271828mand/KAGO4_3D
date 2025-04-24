@@ -51,8 +51,8 @@ public final class GameLoop implements Runnable {
                     frames++;
                     timer += dt;
 
-                    if (timer >= 1.0) {
-                        System.out.println("[DEBUG] "+frames+" FPS");
+                    if (timer >= 5.0) {
+                        System.out.println("[DEBUG] "+(frames/5)+" FPS");
                         frames = 0;
                         timer = 0;
                     }

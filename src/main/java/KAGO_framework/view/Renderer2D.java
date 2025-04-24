@@ -1,10 +1,7 @@
 package KAGO_framework.view;
 
 import KAGO_framework.control.Framework;
-import KAGO_framework.model.Camera2D;
-import KAGO_framework.model.GameObject;
-import KAGO_framework.model.SpriteObject;
-import KAGO_framework.model.GraphicalObject;
+import KAGO_framework.model.*;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -23,12 +20,13 @@ public final class Renderer2D implements Renderer{
     public void renderScene(GameWindow window) {
         Graphics2D graphics = (Graphics2D) window.getCanvas().getBufferStrategy().getDrawGraphics();
         AffineTransform transform = new AffineTransform();
-        Camera2D camera = (Camera2D) Framework.sceneController.getCurrentScene().getCamera();
+        Scene2D scene = (Scene2D) Framework.sceneController.getCurrentScene();
+        Camera2D camera = (Camera2D) scene.getCamera();
 
-        graphics.setColor(Color.BLACK);
+        graphics.setColor(scene.getBackgoundColor());
         graphics.fillRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
 
-        transform.translate(-camera.getX(), -camera.getY());
+        transform.translate(-camera.getX() + (double) window.getCanvas().getWidth()/2, -camera.getY() + (double) window.getCanvas().getHeight()/2);
         graphics.setTransform(transform);
         drawTool.setGraphics2D(graphics);
 

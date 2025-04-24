@@ -4,6 +4,7 @@ package KAGO_framework.model;
 import KAGO_framework.control.GeneralMouseListener;
 import my_project.Config;
 
+import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public abstract class Scene {
     protected final ArrayList<KeyListener> keyListeners;
     protected final ArrayList<GeneralMouseListener> mouseListeners;
     protected final Camera camera;
+
+    protected Color backgoundColor = Color.BLACK;
 
     public Scene(Camera camera){
         objects = new HashMap<>();
@@ -52,5 +55,9 @@ public abstract class Scene {
 
     public Camera getCamera(){
         return camera;
+    }
+
+    public Color getBackgoundColor(){
+        return backgoundColor;
     }
 }
