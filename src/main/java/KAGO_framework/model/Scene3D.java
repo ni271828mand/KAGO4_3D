@@ -13,6 +13,9 @@ public class Scene3D extends Scene{
 
     @Override
     public void add(GameObject object, String name) {
+        if(object instanceof GraphicalObject || object instanceof SpriteObject)
+            throw new RuntimeException("unable to add a non 3D Object to a 3D Scene");
+
         if(!objects.containsKey(name)){
             objects.put(name, object);
 

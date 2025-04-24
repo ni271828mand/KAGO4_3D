@@ -1,16 +1,14 @@
 package KAGO_framework.model;
 
-import java.util.ArrayList;
-
 public abstract class ThreeDimensionalObject extends GameObject{
 
-    private final ArrayList<Triangle> triangles = new ArrayList<>();
+    private final Triangle[] triangles;
 
-    protected void addTriangle(Triangle triangle){
-        triangles.add(triangle);
+    public ThreeDimensionalObject(Triangle[] triangles){
+        this.triangles = triangles;
     }
 
-    public ArrayList<Triangle> getTriangles(){
+    public Triangle[] getTriangles(){
         return triangles;
     }
 }
