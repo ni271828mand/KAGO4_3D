@@ -1,15 +1,21 @@
 package KAGO_framework.control;
 
+import KAGO_framework.model.ui.Theme;
 import my_project.Config;
 
 public final class Framework{
 
-    public static final SceneController sceneController = new SceneController();
-    public static final RenderManager renderManager = new RenderManager();
+    public static final SceneController SCENE_CONTROLLER = new SceneController();
+    public static final RenderManager RENDER_MANAGER = new RenderManager();
     private static GameLoop gameLoop;
     private static boolean running = false;
+    static Theme theme = Theme.LIGHT;
 
     private Framework(){}
+
+    public static void setTheme(Theme newTheme){
+        theme = newTheme;
+    }
 
     public static void start(){
         if(!running){
@@ -17,7 +23,7 @@ public final class Framework{
 
             running = true;
 
-            renderManager.createWindow();
+            RENDER_MANAGER.createWindow();
             gameLoop = new GameLoop();
             gameLoop.start();
         }
@@ -29,7 +35,7 @@ public final class Framework{
 
             gameLoop.stop();
             gameLoop = null;
-            renderManager.deleteWindow();
+            RENDER_MANAGER.deleteWindow();
 
             if(Config.DEBUG) System.out.println("[DEBUG] Framework gestoppt");
         }

@@ -2,6 +2,8 @@ package KAGO_framework.model;
 
 
 import KAGO_framework.control.GeneralMouseListener;
+import KAGO_framework.model.ui.UI;
+import KAGO_framework.model.ui.UIElement;
 import my_project.Config;
 
 import java.awt.*;
@@ -18,6 +20,7 @@ public abstract class Scene {
     protected final ArrayList<KeyListener> keyListeners;
     protected final ArrayList<GeneralMouseListener> mouseListeners;
     protected final Camera camera;
+    protected final UI ui;
 
     protected Color backgoundColor = Color.BLACK;
 
@@ -26,6 +29,9 @@ public abstract class Scene {
         keyListeners = new ArrayList<>();
         mouseListeners = new ArrayList<>();
         this.camera = camera;
+
+        ui = new UI();
+        mouseListeners.add(ui);
     }
 
     public abstract void add(GameObject object, String name);
@@ -55,6 +61,10 @@ public abstract class Scene {
 
     public Camera getCamera(){
         return camera;
+    }
+
+    public UI getUi(){
+        return ui;
     }
 
     public Color getBackgoundColor(){

@@ -2,6 +2,8 @@ package KAGO_framework.view;
 
 import KAGO_framework.control.Framework;
 import KAGO_framework.model.*;
+import KAGO_framework.model.ui.Theme;
+import KAGO_framework.model.ui.UIElement;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -20,7 +22,7 @@ public final class Renderer2D implements Renderer{
     public void renderScene(GameWindow window) {
         Graphics2D graphics = (Graphics2D) window.getCanvas().getBufferStrategy().getDrawGraphics();
         AffineTransform transform = new AffineTransform();
-        Scene2D scene = (Scene2D) Framework.sceneController.getCurrentScene();
+        Scene2D scene = (Scene2D) Framework.SCENE_CONTROLLER.getCurrentScene();
         Camera2D camera = (Camera2D) scene.getCamera();
 
         graphics.setColor(scene.getBackgoundColor());
@@ -30,7 +32,7 @@ public final class Renderer2D implements Renderer{
         graphics.setTransform(transform);
         drawTool.setGraphics2D(graphics);
 
-        for(Object object:Framework.sceneController.getCurrentScene().getObjects().stream().sorted(Comparator.comparingDouble(GameObject::getZ)).toArray()){
+        for(Object object:Framework.SCENE_CONTROLLER.getCurrentScene().getObjects().stream().sorted(Comparator.comparingDouble(GameObject::getZ)).toArray()){
             if(((GameObject) object).getZ() >= 0){
                 if (object instanceof SpriteObject) {
                     SpriteObject spriteObject = ((SpriteObject) object);
@@ -43,6 +45,24 @@ public final class Renderer2D implements Renderer{
                 }
             }
         }
+
+        graphics.dispose();
+        window.getCanvas().getBufferStrategy().show();
+    }
+
+    public void renderUI(GameWindow window, Theme theme){
+        Graphics2D graphics = (Graphics2D) window.getCanvas().getBufferStrategy().getDrawGraphics();
+        Scene scene = Framework.SCENE_CONTROLLER.getCurrentScene();
+
+        drawTool.setGraphics2D(graphics);
+
+        if(scene instanceof SceneUIOnly){
+            graphics.setColor(theme.background);
+            graphics.fillRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
+        }
+
+        for(UIElement element:scene.getUi().getElements())
+            element.draw(drawTool, theme);
 
         graphics.dispose();
         window.getCanvas().getBufferStrategy().show();

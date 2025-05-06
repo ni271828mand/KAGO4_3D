@@ -3,6 +3,7 @@ package KAGO_framework.control;
 import KAGO_framework.model.Scene;
 import KAGO_framework.model.Scene2D;
 import KAGO_framework.model.Scene3D;
+import KAGO_framework.model.SceneUIOnly;
 import KAGO_framework.view.GameWindow;
 import KAGO_framework.view.Renderer;
 import KAGO_framework.view.Renderer2D;
@@ -21,16 +22,25 @@ public final class RenderManager {
         renderers.put(Scene3D.class, new Renderer3D());
     }
 
+    private final Renderer2D renderer2D;
     private GameWindow window;
 
-    RenderManager(){}
+    RenderManager(){
+        window = null;
+        renderer2D = (Renderer2D) renderers.get(Scene2D.class);
+    }
 
     void renderScene(){
-        Class<? extends Scene> sceneClass = Framework.sceneController.getCurrentScene().getClass();
+        Class<? extends Scene> sceneClass = Framework.SCENE_CONTROLLER.getCurrentScene().getClass();
 
-        if(!renderers.containsKey(sceneClass)) throw new RuntimeException("No renderer available to render "+sceneClass);
+        if(!sceneClass.equals(SceneUIOnly.class)){
+            if (!renderers.containsKey(sceneClass))
+                throw new RuntimeException("No renderer available to render " + sceneClass);
 
-        renderers.get(sceneClass).renderScene(window);
+            renderers.get(sceneClass).renderScene(window);
+        }
+
+        renderer2D.renderUI(window, Framework.theme);
     }
 
     void createWindow(){

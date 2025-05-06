@@ -6,7 +6,7 @@ import my_project.Config;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 
-public class Scene3D extends Scene{
+public final class Scene3D extends Scene{
     public Scene3D() {
         super(new Camera3D());
     }
