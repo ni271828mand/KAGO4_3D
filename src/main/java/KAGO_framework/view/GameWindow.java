@@ -16,18 +16,8 @@ public final class GameWindow extends JFrame {
 
         canvas = new Canvas();
 
-        if(Config.FULL_SCREEN){
-            GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-
-            setUndecorated(true);
-            gd.setFullScreenWindow(this);
-
-            canvas.setSize(gd.getDisplayMode().getWidth(), gd.getDisplayMode().getHeight());
-        }else{
-            setResizable(false);
-
-            canvas.setSize(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT);
-        }
+        setResizable(false);
+        canvas.setSize(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT);
 
         add(canvas);
         pack();

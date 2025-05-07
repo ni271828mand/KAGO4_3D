@@ -1,8 +1,9 @@
 import KAGO_framework.control.Framework;
-import KAGO_framework.model.Scene3D;
 import KAGO_framework.model.SceneUIOnly;
-import KAGO_framework.model.ui.Theme;
-import my_project.Axis;
+import KAGO_framework.model.ui.ElementAnchor;
+import KAGO_framework.model.ui.ScreenAnchor;
+import KAGO_framework.model.ui.defaultui.DefaultCheckBox;
+import KAGO_framework.model.ui.defaultui.DefaultLabel;
 
 public class MainProgram {
     public static void main(String[] args) {
@@ -11,5 +12,12 @@ public class MainProgram {
         SceneUIOnly scene = new SceneUIOnly();
         Framework.SCENE_CONTROLLER.addScene("Main", scene);
         Framework.SCENE_CONTROLLER.loadScene("Main");
+
+        DefaultCheckBox checkBox = new DefaultCheckBox(10, 10, ScreenAnchor.CENTER);
+        scene.getUi().add(checkBox, "a");
+        DefaultCheckBox checkBox2 = new DefaultCheckBox(10, 10, new ElementAnchor(checkBox, 0, 50));
+        scene.getUi().add(checkBox2, "b");
+        DefaultCheckBox checkBox3 = new DefaultCheckBox(10, 10, new ElementAnchor(checkBox, 0, -30));
+        scene.getUi().add(checkBox3, "c");
     }
 }

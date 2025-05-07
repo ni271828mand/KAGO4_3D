@@ -5,9 +5,10 @@ import KAGO_framework.model.Scene2D;
 import KAGO_framework.model.Scene3D;
 import KAGO_framework.model.SceneUIOnly;
 import KAGO_framework.view.GameWindow;
-import KAGO_framework.view.Renderer;
-import KAGO_framework.view.Renderer2D;
-import KAGO_framework.view.Renderer3D;
+import KAGO_framework.view.renderer.Renderer;
+import KAGO_framework.view.renderer.Renderer2D;
+import KAGO_framework.view.renderer.Renderer3D;
+import KAGO_framework.view.renderer.UIRenderer;
 import my_project.Config;
 
 import java.util.HashMap;
@@ -22,12 +23,12 @@ public final class RenderManager {
         renderers.put(Scene3D.class, new Renderer3D());
     }
 
-    private final Renderer2D renderer2D;
+    private final UIRenderer uiRenderer;
     private GameWindow window;
 
     RenderManager(){
         window = null;
-        renderer2D = (Renderer2D) renderers.get(Scene2D.class);
+        uiRenderer = new UIRenderer();
     }
 
     void renderScene(){
@@ -40,7 +41,7 @@ public final class RenderManager {
             renderers.get(sceneClass).renderScene(window);
         }
 
-        renderer2D.renderUI(window, Framework.theme);
+        uiRenderer.renderUI(window, Framework.theme);
     }
 
     void createWindow(){
