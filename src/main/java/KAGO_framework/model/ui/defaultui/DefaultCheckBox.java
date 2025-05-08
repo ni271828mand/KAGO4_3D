@@ -13,11 +13,11 @@ public class DefaultCheckBox extends CheckBox {
     @Override
     public void draw(DrawTool drawTool, Theme theme, int x, int y) {
         drawTool.setCurrentColor(theme.primary);
-        drawTool.drawFilledRectangle(x, y, width, height);
+        drawTool.drawFilledRectangle(x - (double) width/2, y - (double) height/2, width, height);
         drawTool.setCurrentColor(theme.secondary);
-        drawTool.drawRectangle(x, y, width, height);
+        drawTool.drawRectangle(x - (double) width/2, y - (double) height/2, width, height);
 
         if(isChecked)
-            drawTool.drawFilledRectangle(x + 2, y + 2, width - 3, height - 3);
+            drawTool.drawFilledRectangle(x - (double) width/2 + 2, y - (double) height/2 + 2, width - 3, height - 3);
     }
 }

@@ -5,6 +5,8 @@ import KAGO_framework.model.ui.Label;
 import KAGO_framework.model.ui.Theme;
 import KAGO_framework.view.DrawTool;
 
+import java.awt.*;
+
 public class DefaultLabel extends Label{
 
     public DefaultLabel(String text, int width, int height, AnchorReference anchor) {
@@ -13,7 +15,11 @@ public class DefaultLabel extends Label{
 
     @Override
     public void draw(DrawTool drawTool, Theme theme, int x, int y){
+        Graphics2D graphics = drawTool.getGraphics2D();
+        int textHeight = graphics.getFontMetrics().getHeight();
+        int textWidth = graphics.getFontMetrics().stringWidth(text);
+
         drawTool.setCurrentColor(theme.fontcolor);
-        drawTool.drawText(x, y, text);
+        drawTool.drawText(x - (double) textWidth/2, y - (double) textHeight/2, text);
     }
 }

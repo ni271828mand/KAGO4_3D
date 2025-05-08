@@ -17,6 +17,10 @@ public final class Framework{
         theme = newTheme;
     }
 
+    public static int getFPS(){
+        return running ? gameLoop.fps : 0;
+    }
+
     public static void start(){
         if(!running){
             if(Config.DEBUG) System.out.println("[DEBUG] Framework startet");

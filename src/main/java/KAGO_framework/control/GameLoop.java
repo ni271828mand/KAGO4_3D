@@ -9,6 +9,9 @@ public final class GameLoop implements Runnable {
     private static boolean running = false;
 
     private Thread thread;
+    private int frames = 0;
+    private double timer = 0;
+    int fps = 0;
 
     GameLoop(){}
 
@@ -26,9 +29,6 @@ public final class GameLoop implements Runnable {
             e.printStackTrace();
         }
     }
-
-    int frames = 0;
-    double timer = 0;
 
     @Override
     public void run() {
@@ -52,9 +52,11 @@ public final class GameLoop implements Runnable {
                     timer += dt;
 
                     if (timer >= 5.0) {
-                        System.out.println("[DEBUG] "+(frames/5)+" FPS");
+                        fps = frames/5;
                         frames = 0;
                         timer = 0;
+
+                        System.out.println("[DEBUG] "+fps+" FPS");
                     }
                 }
             }

@@ -5,6 +5,8 @@ import KAGO_framework.model.ui.Button;
 import KAGO_framework.model.ui.Theme;
 import KAGO_framework.view.DrawTool;
 
+import java.awt.*;
+
 public class DefaultButton extends Button {
 
     public DefaultButton(String text, Runnable action, int width, int height, AnchorReference anchor) {
@@ -14,11 +16,15 @@ public class DefaultButton extends Button {
     @Override
     public void draw(DrawTool drawTool, Theme theme, int x, int y) {
         drawTool.setCurrentColor(theme.primary);
-        drawTool.drawFilledRectangle(x, y, width, height);
+        drawTool.drawFilledRectangle(x - (double) width/2, y - (double) height/2, width, height);
         drawTool.setCurrentColor(theme.secondary);
-        drawTool.drawRectangle(x, y, width, height);
+        drawTool.drawRectangle(x - (double) width/2, y - (double) height/2, width, height);
+
+        Graphics2D graphics = drawTool.getGraphics2D();
+        int textHeight = graphics.getFontMetrics().getHeight();
+        int textWidth = graphics.getFontMetrics().stringWidth(text);
 
         drawTool.setCurrentColor(theme.fontcolor);
-        drawTool.drawText(x, y, text);
+        drawTool.drawText(x - (double) textWidth/2, y - (double) textHeight/2, text);
     }
 }

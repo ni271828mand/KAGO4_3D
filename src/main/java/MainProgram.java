@@ -13,11 +13,11 @@ public class MainProgram {
         Framework.SCENE_CONTROLLER.addScene("Main", scene);
         Framework.SCENE_CONTROLLER.loadScene("Main");
 
-        DefaultCheckBox checkBox = new DefaultCheckBox(10, 10, ScreenAnchor.CENTER);
+        DefaultCheckBox checkBox = new DefaultCheckBox(20, 20, ScreenAnchor.CENTER);
         scene.getUi().add(checkBox, "a");
-        DefaultCheckBox checkBox2 = new DefaultCheckBox(10, 10, new ElementAnchor(checkBox, 0, 50));
+        DefaultCheckBox checkBox2 = new DefaultCheckBox(20, 20, new ElementAnchor(checkBox, 0, 50));
         scene.getUi().add(checkBox2, "b");
-        DefaultCheckBox checkBox3 = new DefaultCheckBox(10, 10, new ElementAnchor(checkBox, 0, -30));
+        DefaultCheckBox checkBox3 = new DefaultCheckBox(20, 20, new ElementAnchor(checkBox2, 0, -15));
         scene.getUi().add(checkBox3, "c");
     }
 }

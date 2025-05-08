@@ -58,23 +58,9 @@ public class UIRenderer {
 
     private void renderScreenAnchoredElement(UIElement element, Theme theme){
         ScreenAnchor anchor = ((ScreenAnchor) element.getAnchor());
-        int x = anchor.getXOffset();
-        int y = anchor.getYOffset();
 
-        if(x > 0)
-            x += anchor.getX() + element.getWidth()/2;
-        else if(x < 0)
-            x -= anchor.getX() - element.getWidth()/2;
-        else
-            x = anchor.getX();
-
-        if(y > 0)
-            y += anchor.getY() + element.getHeight()/2;
-        else if(y < 0)
-            y -= anchor.getY() - element.getHeight()/2;
-        else
-            y = anchor.getY();
-
+        int x = calcCoordinate(anchor.getX(), 0, element.getWidth()/2, anchor.getXOffset());
+        int y = calcCoordinate(anchor.getY(), 0, element.getHeight()/2, anchor.getYOffset());
 
         element.draw(drawTool, theme, x, y);
         rendered.put(element, new int[]{x, y, element.getWidth()/2, element.getHeight()/2});
@@ -92,24 +78,20 @@ public class UIRenderer {
 
         int[] ref = rendered.get(relative);
 
-        int x = anchor.getXOffset();
-        int y = anchor.getYOffset();
-
-        if(x > 0)
-            x += ref[0] + ref[2] + element.getWidth()/2;
-        else if(x < 0)
-            x -= ref[0] - ref[2] - element.getWidth()/2;
-        else
-            x = ref[0];
-
-        if(y > 0)
-            y += ref[1] + ref[3] + element.getHeight()/2;
-        else if(y < 0)
-            y -= ref[1] - ref[3] - element.getHeight()/2;
-        else
-            y = ref[1];
+        int x = calcCoordinate(ref[0], ref[2], element.getWidth()/2, anchor.getXOffset());
+        int y = calcCoordinate(ref[1], ref[3], element.getHeight()/2, anchor.getYOffset());
 
         element.draw(drawTool, theme, x, y);
         rendered.put(element, new int[]{x, y, element.getWidth()/2, element.getHeight()/2});
+    }
+
+    private int calcCoordinate(int relative, int size1, int size2, int offset){
+        if(offset > 0)
+            return relative + size1 + size2 + offset;
+
+        if(offset < 0)
+            return relative - (size1 + size2 + Math.abs(offset));
+
+        return relative;
     }
 }
