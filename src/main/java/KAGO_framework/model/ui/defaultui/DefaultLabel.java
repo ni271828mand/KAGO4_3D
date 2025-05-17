@@ -14,7 +14,7 @@ public class DefaultLabel extends Label{
     }
 
     @Override
-    public void draw(DrawTool drawTool, Theme theme, int x, int y){
+    public void draw(DrawTool drawTool, Theme theme){
         Graphics2D graphics = drawTool.getGraphics2D();
         int textHeight = graphics.getFontMetrics().getHeight();
         int textWidth = graphics.getFontMetrics().stringWidth(text);

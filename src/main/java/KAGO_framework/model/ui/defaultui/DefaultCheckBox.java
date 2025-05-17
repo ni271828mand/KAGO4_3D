@@ -11,7 +11,7 @@ public class DefaultCheckBox extends CheckBox {
     }
 
     @Override
-    public void draw(DrawTool drawTool, Theme theme, int x, int y) {
+    public void draw(DrawTool drawTool, Theme theme) {
         drawTool.setCurrentColor(theme.primary);
         drawTool.drawFilledRectangle(x - (double) width/2, y - (double) height/2, width, height);
         drawTool.setCurrentColor(theme.secondary);

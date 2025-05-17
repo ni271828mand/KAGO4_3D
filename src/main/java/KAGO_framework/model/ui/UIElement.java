@@ -4,6 +4,7 @@ import KAGO_framework.view.DrawTool;
 
 public abstract class UIElement{
 
+    protected int x = 0, y = 0;
     protected int width, height;
     protected AnchorReference anchor;
 
@@ -13,7 +14,7 @@ public abstract class UIElement{
         this.anchor = anchor;
     }
 
-    public abstract void draw(DrawTool drawTool, Theme theme, int x, int y);
+    public abstract void draw(DrawTool drawTool, Theme theme);
 
     public int getWidth() {
         return width;
@@ -21,6 +22,14 @@ public abstract class UIElement{
 
     public int getHeight() {
         return height;
+    }
+
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
     }
 
     public AnchorReference getAnchor(){
@@ -37,5 +46,13 @@ public abstract class UIElement{
 
     public void setAnchor(AnchorReference anchor){
         this.anchor = anchor;
+    }
+
+    public void setX(int x){
+        this.x = x;
+    }
+
+    public void setY(int y){
+        this.y = y;
     }
 }

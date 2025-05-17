@@ -1,6 +1,7 @@
 package KAGO_framework.model.ui;
 
 import KAGO_framework.control.GeneralMouseListener;
+import my_project.Config;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
@@ -30,7 +31,21 @@ public final class UI implements GeneralMouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        int x = e.getX() - Config.WINDOW_WIDTH/2;
+        int y = e.getY() - Config.WINDOW_HEIGHT/2;
 
+        for(UIElement element:uiElements.values()){
+            int divX = Math.abs(Math.abs(element.getX()) - Math.abs(x));
+            int divY = Math.abs(Math.abs(element.getY()) - Math.abs(y));
+
+            if(divX <= element.width/2 && divY <= element.height/2){
+                if (element instanceof CheckBox) {
+                    ((CheckBox) element).setChecked(!((CheckBox) element).isChecked());
+                } else if (element instanceof Button) {
+                    ((Button) element).performAction();
+                }
+            }
+        }
     }
 
     @Override

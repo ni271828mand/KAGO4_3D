@@ -62,7 +62,9 @@ public class UIRenderer {
         int x = calcCoordinate(anchor.getX(), 0, element.getWidth()/2, anchor.getXOffset());
         int y = calcCoordinate(anchor.getY(), 0, element.getHeight()/2, anchor.getYOffset());
 
-        element.draw(drawTool, theme, x, y);
+        element.setX(x);
+        element.setY(y);
+        element.draw(drawTool, theme);
         rendered.put(element, new int[]{x, y, element.getWidth()/2, element.getHeight()/2});
     }
 
@@ -81,7 +83,9 @@ public class UIRenderer {
         int x = calcCoordinate(ref[0], ref[2], element.getWidth()/2, anchor.getXOffset());
         int y = calcCoordinate(ref[1], ref[3], element.getHeight()/2, anchor.getYOffset());
 
-        element.draw(drawTool, theme, x, y);
+        element.setX(x);
+        element.setY(y);
+        element.draw(drawTool, theme);
         rendered.put(element, new int[]{x, y, element.getWidth()/2, element.getHeight()/2});
     }
 
